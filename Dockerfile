@@ -1,14 +1,17 @@
-# Use the haskell:latest image as the base image
+# ベースイメージとしてHaskellを使用
 FROM haskell:latest
 
-# Install necessary dependencies for Haskell development
+# 必要な依存関係をインストール
 RUN apt-get update && apt-get install -y \
     build-essential \
     libgmp-dev \
     zlib1g-dev
 
-# Set the working directory to /app
+# 作業ディレクトリを設定
 WORKDIR /app
 
-# Copy the current directory contents into the container
+# 現在のディレクトリの内容をコンテナにコピー
 COPY . /app
+
+# コンテナを継続的に実行させるためのコマンド
+CMD ["tail", "-f", "/dev/null"]
